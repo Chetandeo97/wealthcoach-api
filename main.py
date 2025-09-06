@@ -448,7 +448,14 @@ def forecast_csv(req: ForecastRequest):
 @app.post("/planner/reverse", response_model=ReverseResponse)
 def planner_reverse(req: ReverseRequest):
     return reverse_search(req.cashflow, req.constraints, req.market)
-
+@app.get("/")
+def root():
+    return {
+        "app": "WealthCoach API",
+        "version": "0.7.0",
+        "health": "/health",
+        "docs": "/docs"
+    }
 # --------------- main ----------------
 if __name__ == "__main__":
     import uvicorn
